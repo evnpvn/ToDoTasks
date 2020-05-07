@@ -58,6 +58,29 @@ namespace TodoTasks.Model
             }
         }
 
+        private string _notes;
+        public string Notes
+        {
+            get { return _notes; }
+            set 
+            {
+                _notes = value;
+                PropertyUpdated("Notes");
+            }
+        }
+
+        private DateTime _dueDate;
+
+        public DateTime DueDate
+        {
+            get { return _dueDate; }
+            set 
+            { 
+                _dueDate = value;
+                PropertyUpdated("DueDate");
+            }
+        }
+
         //!Events
         public event PropertyChangedEventHandler PropertyChanged;
 
