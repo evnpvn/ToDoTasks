@@ -5,45 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TodoTasks.View"
         mc:Ignorable="d"
-        Title="To Do tasks" Height="500" Width="800">
-    
+        Title="To Do tasks" Height="600" Width="900"
+        MinHeight="150" MinWidth="250">
+
     <Window.Resources>
         
     </Window.Resources>
+      
+        <DockPanel>
+            <!--Tasklist Panel-->
+            <StackPanel DockPanel.Dock="Left" Width="200" HorizontalAlignment="Left"
+                            Background="#252527">
+                
+                <TextBlock Text="Task lists" FontSize="18" Foreground="Gainsboro" Margin="5,5,5,0"/>
 
+                <ListView Background="Transparent" Margin="10,5,10,5">
 
-    <DockPanel>
-        <!--Tasklist Panel-->
-        <StackPanel DockPanel.Dock="Left" MaxWidth="200" MinWidth="200" Background="Gray">
-            <TextBlock Text="Task lists" FontSize="18" Foreground="Gainsboro" Margin="5,5,5,0"/>
-            
-            <ListView Background="Transparent">
+                </ListView>
 
+                <Button Content="+New list" Width="65" HorizontalAlignment="Left" Margin="10,5,5,5"/>
+            </StackPanel>
+
+       
+            <!--Subtask Panel-->
+            <StackPanel DockPanel.Dock="Right" Width="270" HorizontalAlignment="Right"
+                        Background="#252527">
+
+            <ListView Background="Transparent" Margin="10,5,10,5">
+
+                </ListView>
+                
+                <Button Content="+Next step" Width="70" HorizontalAlignment="Left" Margin="10,5,5,5"/>
+                <Button Content="Mark important" Width="95" HorizontalAlignment="Left" Margin="10,5,5,5"/>
+            </StackPanel>
+
+        <!--Tasks-->
+        <StackPanel Background="#181818">
+            <TextBlock Text="Task list Name" Foreground="Gainsboro" FontSize="22" FontWeight="DemiBold" Margin="25,10,5,5"/>
+            <ListView Background="Transparent" Margin="25,10,25,5">
+                
             </ListView>
-            
-            <Button Content="+New list" Width="65" HorizontalAlignment="Left" Margin="5,5,5,5"/>
+
+            <TextBox Margin="25,5,25,5" Height="25" Background="#222224">
+            </TextBox>
         </StackPanel>
-
-        <!--Tasks Grid-->
-        <Grid>
-            <ListView>
-
-            </ListView>
-        </Grid>
         
-        <!--Subtask Panel-->
-        <StackPanel DockPanel.Dock="Right" MaxWidth="200" MinWidth="200" Background="AliceBlue"
-                    Visibility="Visible">
-            <ListView Background="Transparent">
 
-            </ListView>
-            <Button Content="+Next step" Width="70" HorizontalAlignment="Left" Margin="5,5,5,5"/>
-            <Button Content="Mark important" Width="95" HorizontalAlignment="Left" Margin="5,5,5,5"/>
-
-
-
-        </StackPanel>
-        
     </DockPanel>
-
+    
 </Window>
