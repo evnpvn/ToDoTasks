@@ -28,6 +28,19 @@ namespace TodoTasks.Model
             }
         }
 
+        private int _taskCount;
+        public int TaskCount
+        {
+            get { return _taskCount; }
+            set 
+            {
+                _taskCount = this.Tasks.Count;
+                PropertyUpdated("TaskCount");
+            }
+        }
+
+
+
         //!Ctor
         public Tasklist()
         {
