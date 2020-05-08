@@ -42,6 +42,7 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Margin" Value="25,5,25,20"/>
+            <Setter Property="SelectionBrush" Value="#BBBBBB"/>
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -74,7 +75,7 @@
             
         </Style>
 
-        <!--Style for task input prompt text that disappears when user clicks to enter a task-->
+        <!--Style for task input prompt "+ Add a task"  text that disappears when user clicks to enter a task-->
         <Style x:Key="myTextBoxPromptStyle" TargetType="TextBox">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Background" Value="#222224"/>
