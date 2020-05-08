@@ -9,7 +9,37 @@
         MinHeight="150" MinWidth="250">
 
     <Window.Resources>
-        
+        <Style x:Key="myTextBoxStyle" TargetType="TextBox">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Background" Value="#222224"/>
+            <Setter Property="Foreground" Value="Gainsboro"/>
+            <Setter Property="BorderThickness" Value="10"/>
+            <Setter Property="BorderBrush" Value="#222224"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Text" Value=" + Add a task"/>
+
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border x:Name="textBoxTemplateBorder" CornerRadius="2" BorderBrush="{TemplateBinding BorderBrush}" 
+                                Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+                               
+                            </ScrollViewer>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="textBoxTemplateBorder" Property="Background" Value="#303030"/>
+                                <Setter TargetName="textBoxTemplateBorder" Property="BorderBrush" Value="#303030"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+ 
+        </Style>
     </Window.Resources>
       
         <DockPanel>
@@ -23,34 +53,37 @@
 
                 </ListView>
 
-                <Button Content="+New list" Width="65" HorizontalAlignment="Left" Margin="10,5,5,5"/>
-            </StackPanel>
+            <Button Style="{StaticResource myButtonStyle}"  Content="+New list" Margin="10,5,5,5"/>
+        </StackPanel>
 
        
             <!--Subtask Panel-->
             <StackPanel DockPanel.Dock="Right" Width="270" HorizontalAlignment="Right"
                         Background="#252527">
 
-            <ListView Background="Transparent" Margin="10,5,10,5">
+                <ListView Background="Transparent" Margin="10,5,10,5">
 
                 </ListView>
-                
-                <Button Content="+Next step" Width="70" HorizontalAlignment="Left" Margin="10,5,5,5"/>
-                <Button Content="Mark important" Width="95" HorizontalAlignment="Left" Margin="10,5,5,5"/>
+
+                <Button Style="{StaticResource myButtonStyle}" Content="+Next step" Margin="15,5,5,5"/>
+            
             </StackPanel>
 
-        <!--Tasks-->
-        <StackPanel Background="#181818">
-            <TextBlock Text="Task list Name" Foreground="Gainsboro" FontSize="22" FontWeight="DemiBold" Margin="25,10,5,5"/>
-            <ListView Background="Transparent" Margin="25,10,25,5">
+            <!--Tasks-->
+            <StackPanel DockPanel.Dock="Bottom" Background="#181818">
+
+            <TextBox Style="{StaticResource myTextBoxStyle}" Margin="25,5,25,20"/>
                 
-            </ListView>
+            </StackPanel>
 
-            <TextBox Margin="25,5,25,5" Height="25" Background="#222224">
-            </TextBox>
-        </StackPanel>
-        
+            <StackPanel Background="#181818">
+                <TextBlock Text="Task list name" Foreground="Gainsboro" FontSize="22" FontWeight="DemiBold" Margin="25,10,5,5"/>
+                
+                <ListView Background="Transparent" Margin="25,10,25,5">
 
-    </DockPanel>
+                </ListView>
+            </StackPanel>
+
+        </DockPanel>
     
 </Window>
