@@ -10,9 +10,9 @@ namespace TodoTasks.Model
         //!Fields
 
         //!Properties
-        public Guid TasklistID { get; set; }
+        public string TasklistID { get; set; }
 
-        public Guid TaskID { get; set; }
+        public string TaskID { get; set; }
 
         public string Name { get; set; }
 
@@ -27,9 +27,9 @@ namespace TodoTasks.Model
         //!Events
 
         //!Ctor
-        public Task(Guid tasklistId)
+        public Task(string tasklistId)
         {
-            this.TaskID = new Guid();
+            this.TaskID = Guid.NewGuid().ToString();
             this.TasklistID = tasklistId;
         }
 

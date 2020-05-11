@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TodoTasks"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:vm="clr-namespace:TodoTasks.ViewModel"
         mc:Ignorable="d"
         Title="To Do tasks" Height="600" Width="900"
@@ -13,20 +13,27 @@
         <vm:TasksViewModel x:Key="vm"/>
     </Window.Resources>
 
-    <DockPanel>
+    <DockPanel DataContext="{StaticResource vm}">
         <!--Tasklist Panel-->
         <StackPanel DockPanel.Dock="Left" Width="200" HorizontalAlignment="Left"
                         Background="#252527">
 
             <TextBlock Text="Task lists" FontSize="18" Foreground="Gainsboro" Margin="5,5,5,0"/>
 
-            <ListView ItemsSource="{Binding Source={StaticResource vm}, Path=Tasklist}"
-                      SelectedItem="{Binding Source={StaticResource vm}, Path=SelectedTasklist}"
+            <ListView ItemsSource="{Binding TasklistList}"
+                      SelectedItem="{Binding SelectedTasklist}"
                       Background="Transparent" Margin="10,5,10,5">
-
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" Style="{Binding Source={StaticResource myTextblockStyle}}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+                
             </ListView>
 
-            <Button Style="{StaticResource myButtonStyle}"  Content="+New list" Margin="10,5,5,5"/>
+            <Button Style="{StaticResource myButtonStyle}"  Content="+New list" Margin="10,5,5,5"
+                    Command="{Binding NewTasklistCommand}"/>
         </StackPanel>
 
 
@@ -43,16 +50,25 @@
         </StackPanel>
 
         <!--Tasks-->
-        <StackPanel DockPanel.Dock="Bottom" Background="#181818">
+        <StackPanel DockPanel.Dock="Bottom" Background="#191919">
 
             <Grid>
                 <TextBox Style="{StaticResource myTextBoxPromptStyle}" Text=" + Add a task" Focusable="False"/>
-                <TextBox Style="{StaticResource myTextBoxStyle}" />
+                <TextBox Style="{StaticResource myTextBoxStyle}" AcceptsReturn="False"
+                         Text="{Binding SelectedTask.Name}" >
+                <TextBox.InputBindings>
+                        <KeyBinding Key="Return"
+                                    Command="{Binding newTaskCommand}"
+                                    CommandParameter="{Binding Source={StaticResource vm}, Path=SelectedTask.Name}"/>
+                        <!--I don't think I need this line of code below because my command parameter is bound to the name of the task which in the text box
+                                CommandParameter="{Binding Path=Text, RelativeSource={RelativeSource AncestorType={x:Type TextBox}}}" -->
+                    </TextBox.InputBindings>
+                </TextBox>
             </Grid>
 
         </StackPanel>
 
-        <StackPanel Background="#181818">
+        <StackPanel Background="#191919">
             <TextBlock Text="Task list name" Foreground="Gainsboro" FontSize="22" FontWeight="DemiBold" Margin="25,10,5,5"/>
 
             <ListView ItemsSource="{Binding Source={StaticResource vm}, Path=Tasks}"

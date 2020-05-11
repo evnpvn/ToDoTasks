@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using TodoTasks.Model;
+using TodoTasks.ViewModel.Commands;
 
 namespace TodoTasks.ViewModel
 {
@@ -15,13 +16,12 @@ namespace TodoTasks.ViewModel
         //!Fields
 
         //!Properties
-        public ObservableCollection<Tasklist> Tasklist { get; set; }
+        public ObservableCollection<Tasklist> TasklistList { get; set; }
 
-        public ObservableCollection<Task> Tasks { get; set; }
+        public ObservableCollection<Task> TasksList { get; set; }
 
         //Removing subtasks to implement afterward
         ////public ObservableCollection<string> Subtasks { get; set; }
-
 
         private Tasklist _selectedTasklist;
         public Tasklist SelectedTasklist
@@ -51,10 +51,14 @@ namespace TodoTasks.ViewModel
             get { return _taskCount; }
             set
             {
-                _taskCount = this.Tasks.Count;
+                _taskCount = this.SelectedTasklist.Tasks.Count;
                 PropertyUpdated("TaskCount");
             }
         }
+
+        public NewTaskCommand NewTaskCommand { get; set; }
+
+        public NewTasklistCommand NewTasklistCommand { get; set; }
 
         //!Events
         public event PropertyChangedEventHandler PropertyChanged;
@@ -62,7 +66,17 @@ namespace TodoTasks.ViewModel
         //!Ctor
         public TasksViewModel()
         {
-            ObservableCollection<Tasklist> tasklist = new ObservableCollection<Tasklist>();
+            this.TasklistList = new ObservableCollection<Tasklist>
+            {
+                new Tasklist { Name = "Important" },
+                new Tasklist { Name = "My Day" },
+                new Tasklist { Name = "Flagged email" }
+            };         
+
+            this.TasksList = new ObservableCollection<Task>();
+
+            this.NewTasklistCommand = new NewTasklistCommand(this);
+            this.NewTaskCommand = new NewTaskCommand(this);
         }
 
         //!Methods
@@ -70,5 +84,6 @@ namespace TodoTasks.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

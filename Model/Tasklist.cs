@@ -11,7 +11,7 @@ namespace TodoTasks.Model
         //!Fields
 
         //!Properties
-        public Guid TasklistID { get; set; }
+        public string TasklistID { get; set; }
 
         public List<Task> Tasks { get; set; }
 
@@ -21,9 +21,9 @@ namespace TodoTasks.Model
         //!Ctor
         public Tasklist()
         {
-            this.TasklistID = new Guid();
-            ObservableCollection<Task> tasks = new ObservableCollection<Task>();
-    }
+            this.TasklistID = Guid.NewGuid().ToString();
+            this.Name = "Untitled list";
+        }
 
         //!Events
 

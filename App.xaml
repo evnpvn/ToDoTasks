@@ -5,7 +5,20 @@
              StartupUri="View/TasksWindow.xaml">
     
     <Application.Resources>
-        
+        <!--Style for list of Tasklists -->
+        <Style x:Key="myTextblockStyle" TargetType="TextBlock">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Foreground" Value="Gainsboro"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Margin" Value="0,4,0,6"/>
+
+
+        </Style>
+
+
         <!--Style for Buttons like +Add task list and +Add subtask-->
         <Style x:Key="myButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
