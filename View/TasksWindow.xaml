@@ -3,61 +3,65 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TodoTasks.View"
+        xmlns:local="clr-namespace:TodoTasks"
+        xmlns:vm="clr-namespace:TodoTasks.ViewModel"
         mc:Ignorable="d"
         Title="To Do tasks" Height="600" Width="900"
         MinHeight="150" MinWidth="250">
 
     <Window.Resources>
-        
+        <vm:TasksViewModel x:Key="vm"/>
     </Window.Resources>
-      
-        <DockPanel>
-            <!--Tasklist Panel-->
-            <StackPanel DockPanel.Dock="Left" Width="200" HorizontalAlignment="Left"
-                            Background="#252527">
-                
-                <TextBlock Text="Task lists" FontSize="18" Foreground="Gainsboro" Margin="5,5,5,0"/>
 
-                <ListView Background="Transparent" Margin="10,5,10,5">
+    <DockPanel>
+        <!--Tasklist Panel-->
+        <StackPanel DockPanel.Dock="Left" Width="200" HorizontalAlignment="Left"
+                        Background="#252527">
 
-                </ListView>
+            <TextBlock Text="Task lists" FontSize="18" Foreground="Gainsboro" Margin="5,5,5,0"/>
+
+            <ListView ItemsSource="{Binding Source={StaticResource vm}, Path=Tasklist}"
+                      SelectedItem="{Binding Source={StaticResource vm}, Path=SelectedTasklist}"
+                      Background="Transparent" Margin="10,5,10,5">
+
+            </ListView>
 
             <Button Style="{StaticResource myButtonStyle}"  Content="+New list" Margin="10,5,5,5"/>
         </StackPanel>
 
-       
-            <!--Subtask Panel-->
-            <StackPanel DockPanel.Dock="Right" Width="270" HorizontalAlignment="Right"
-                        Background="#252527">
 
-                <ListView Background="Transparent" Margin="10,5,10,5">
+        <!--Subtask Panel-->
+        <StackPanel DockPanel.Dock="Right" Width="270" HorizontalAlignment="Right"
+                    Background="#252527">
 
-                </ListView>
+            <ListView Background="Transparent" Margin="10,5,10,5">
 
-                <Button Style="{StaticResource myButtonStyle}" Content="+Next step" Margin="15,5,5,5"/>
-            
-            </StackPanel>
+            </ListView>
 
-            <!--Tasks-->
-            <StackPanel DockPanel.Dock="Bottom" Background="#181818">
+            <Button Style="{StaticResource myButtonStyle}" Content="+Next step" Margin="15,5,5,5"/>
+
+        </StackPanel>
+
+        <!--Tasks-->
+        <StackPanel DockPanel.Dock="Bottom" Background="#181818">
 
             <Grid>
                 <TextBox Style="{StaticResource myTextBoxPromptStyle}" Text=" + Add a task" Focusable="False"/>
-                <TextBox Style="{StaticResource myTextBoxStyle}"/>
+                <TextBox Style="{StaticResource myTextBoxStyle}" />
             </Grid>
-            
-                
-            </StackPanel>
 
-            <StackPanel Background="#181818">
-                <TextBlock Text="Task list name" Foreground="Gainsboro" FontSize="22" FontWeight="DemiBold" Margin="25,10,5,5"/>
-                
-                <ListView Background="Transparent" Margin="25,10,25,5">
+        </StackPanel>
 
-                </ListView>
-            </StackPanel>
+        <StackPanel Background="#181818">
+            <TextBlock Text="Task list name" Foreground="Gainsboro" FontSize="22" FontWeight="DemiBold" Margin="25,10,5,5"/>
 
-        </DockPanel>
-    
+            <ListView ItemsSource="{Binding Source={StaticResource vm}, Path=Tasks}"
+                      SelectedItem="{Binding Source={StaticResource vm}, Path=SelectedTask}"
+                      Background="Transparent" Margin="25,10,25,5">
+
+            </ListView>
+        </StackPanel>
+
+    </DockPanel>
+
 </Window>

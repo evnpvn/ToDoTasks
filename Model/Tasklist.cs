@@ -1,60 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 
 namespace TodoTasks.Model
 {
-    public class Tasklist : INotifyPropertyChanged
+    public class Tasklist
     {
         //!Fields
 
         //!Properties
-        private Guid _tasklistID;
-        public Guid TasklistID
-        {
-            get { return _tasklistID; }
-            set { _tasklistID = value; }
-        }
+        public Guid TasklistID { get; set; }
 
-        private List<Task> _tasks;
-        public List<Task> Tasks
-        {
-            get { return _tasks; }
-            set 
-            {
-                _tasks = value;
-                PropertyUpdated("Tasks");
-            }
-        }
+        public List<Task> Tasks { get; set; }
 
-        private int _taskCount;
-        public int TaskCount
-        {
-            get { return _taskCount; }
-            set 
-            {
-                _taskCount = this.Tasks.Count;
-                PropertyUpdated("TaskCount");
-            }
-        }
-
+        public string Name { get; set; }
 
 
         //!Ctor
         public Tasklist()
         {
             this.TasklistID = new Guid();
-            this.Tasks = new List<Task>();
-        }
+            ObservableCollection<Task> tasks = new ObservableCollection<Task>();
+    }
 
         //!Events
-        public event PropertyChangedEventHandler PropertyChanged;
 
         //!Methods
-        private void PropertyUpdated(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

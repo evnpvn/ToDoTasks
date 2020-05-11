@@ -5,84 +5,26 @@ using System.Text;
 
 namespace TodoTasks.Model
 {
-    public class Task : INotifyPropertyChanged
+    public class Task
     {
         //!Fields
 
         //!Properties
-        private Guid _tasklistID;
-        public Guid TasklistID
-        {
-            get { return _tasklistID; }
-            set { _tasklistID = value; }
-        }
+        public Guid TasklistID { get; set; }
 
-        private Guid _taskID;
-        public Guid TaskID
-        {
-            get { return _taskID; }
-            set { _taskID = value; }
-        }
+        public Guid TaskID { get; set; }
 
-        private bool _completed;
-        public bool Completed
-        {
-            get { return _completed; }
-            set
-            {
-                _completed = value;
-                PropertyUpdated("Completed");
-            }
-        }
+        public string Name { get; set; }
 
-        private bool _important;
-        public bool Important
-        {
-            get { return _important; }
-            set
-            {
-                _important = value;
-                PropertyUpdated("Important");
-            }
-        }
+        public bool Completed { get; set; }
 
-        private List<string> _subtasks;
+        public bool Important { get; set; }
 
-        public List<string> Subtasks
-        {
-            get { return _subtasks; }
-            set
-            {
-                _subtasks = value;
-                PropertyUpdated("Subtasks");
-            }
-        }
-
-        private string _notes;
-        public string Notes
-        {
-            get { return _notes; }
-            set 
-            {
-                _notes = value;
-                PropertyUpdated("Notes");
-            }
-        }
-
-        private DateTime _dueDate;
-
-        public DateTime DueDate
-        {
-            get { return _dueDate; }
-            set 
-            { 
-                _dueDate = value;
-                PropertyUpdated("DueDate");
-            }
-        }
+        public string Notes { get; set; }
+  
+        public DateTime DueDate { get; set; }
 
         //!Events
-        public event PropertyChangedEventHandler PropertyChanged;
 
         //!Ctor
         public Task(Guid tasklistId)
@@ -92,9 +34,5 @@ namespace TodoTasks.Model
         }
 
         //!Methods
-        private void PropertyUpdated(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }
