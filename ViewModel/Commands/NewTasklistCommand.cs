@@ -39,8 +39,10 @@ namespace TodoTasks.ViewModel.Commands
         public void Execute(object parameter)
         {
             Tasklist newTasklist = new Tasklist();
-
+            
             TasksViewModel.TasklistList.Add(newTasklist);
+            TasksViewModel.IsTasklistRenaming = true;
+            TasksViewModel.SelectedTasklist = newTasklist;
         }
     }
 }
