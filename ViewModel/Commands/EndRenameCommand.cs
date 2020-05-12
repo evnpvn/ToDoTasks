@@ -2,45 +2,38 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
-using TodoTasks.ViewModel;
 using TodoTasks.Model;
 
 namespace TodoTasks.ViewModel.Commands
 {
-    public class NewTasklistCommand : ICommand
+    public class EndRenameCommand : ICommand
     {
-        //!Fields
-        private const int MaxNumberofTaskLists = 15;
-
         //!Properties
         public TasksViewModel TasksViewModel { get; set; }
-
 
         //!Events
         public event EventHandler CanExecuteChanged;
 
         //!Ctor
-        public NewTasklistCommand(TasksViewModel tasksViewModel)
+        public EndRenameCommand(TasksViewModel tasksViewModel)
         {
             this.TasksViewModel = tasksViewModel;
         }
 
         //!Methods
-
         public bool CanExecute(object parameter)
         {
-            if(TasksViewModel.TasklistList.Count < MaxNumberofTaskLists)
-            {
-                return true;
-            }
-            else return false;
+            //TODO: implement logic once known
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            Tasklist newTasklist = new Tasklist();
+            //parameter is the selectedtasklist (not required because we've also bound the textbox to the tasklist name
+            ////Tasklist selectedTasklist = parameter as Tasklist;
 
-            TasksViewModel.TasklistList.Add(newTasklist);
+            //All I need to do is set this to false
+            this.TasksViewModel.IsTasklistRenaming = false;
         }
     }
 }

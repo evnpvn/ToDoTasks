@@ -16,7 +16,7 @@ namespace TodoTasks.ViewModel
         //!Fields
 
         //!Properties
-        public ObservableCollection<Tasklist> TasklistList { get; set; }
+        public ObservableCollection<Tasklist> TasklistList { get; set; } 
 
         public ObservableCollection<Task> TasksList { get; set; }
 
@@ -56,9 +56,33 @@ namespace TodoTasks.ViewModel
             }
         }
 
-        public NewTaskCommand NewTaskCommand { get; set; }
+        private bool _isTasklistRenaming;
+        public bool IsTasklistRenaming
+        {
+            get { return _isTasklistRenaming; }
+            set 
+            { 
+                _isTasklistRenaming = value;
+                PropertyUpdated("IsTasklistRenaming");
+            }
+        }
+
+        private bool _isTaskRenaming;
+        public bool IsTaskRenaming
+        {
+            get { return _isTaskRenaming; }
+            set
+            {
+                _isTaskRenaming = value;
+                PropertyUpdated("IsTaskRenaming");
+            }
+        }
 
         public NewTasklistCommand NewTasklistCommand { get; set; }
+        public NewTaskCommand NewTaskCommand { get; set; }
+
+        public StartRenameCommand StartRenameCommand { get; set; }
+        public EndRenameCommand EndRenameCommand { get; set; }
 
         //!Events
         public event PropertyChangedEventHandler PropertyChanged;
@@ -71,12 +95,17 @@ namespace TodoTasks.ViewModel
                 new Tasklist { Name = "Important" },
                 new Tasklist { Name = "My Day" },
                 new Tasklist { Name = "Flagged email" }
-            };         
+            };
 
             this.TasksList = new ObservableCollection<Task>();
 
+            this.SelectedTasklist = TasklistList[0];
+
             this.NewTasklistCommand = new NewTasklistCommand(this);
             this.NewTaskCommand = new NewTaskCommand(this);
+
+            this.StartRenameCommand = new StartRenameCommand(this);
+            this.EndRenameCommand = new EndRenameCommand(this);
         }
 
         //!Methods
