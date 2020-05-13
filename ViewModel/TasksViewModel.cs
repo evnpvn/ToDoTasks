@@ -30,6 +30,21 @@ namespace TodoTasks.ViewModel
             set 
             { 
                 _selectedTasklist = value;
+                this.TasksList.Clear();
+                if(SelectedTasklist != null)
+                {
+                    if(SelectedTasklist.Tasks != null)
+                    {
+                        if(SelectedTasklist.Tasks.Count > 0)
+                        {
+                            foreach (Task task in this.SelectedTasklist.Tasks)
+                            {
+                                this.TasksList.Add(task);
+                            }
+                        }
+                        
+                    }
+                }          
                 PropertyUpdated("SelectedTasklist");
             }
         }

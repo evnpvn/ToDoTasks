@@ -22,6 +22,7 @@ namespace TodoTasks.Model
         {
             this.TasklistID = Guid.NewGuid().ToString();
             this.Name = "Untitled list";
+            this.Tasks = new List<Task>();
         }
 
         //!Events

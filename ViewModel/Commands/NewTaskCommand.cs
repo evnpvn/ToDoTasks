@@ -24,10 +24,7 @@ namespace TodoTasks.ViewModel.Commands
         //!Methods
         public bool CanExecute(object parameter)
         {
-            //TODO: test this
-            //Only when a task list is selected && textbox != null
             string taskText = parameter as string;
-
 
             if (string.IsNullOrEmpty(taskText) == false && string.IsNullOrWhiteSpace(taskText) == false)
             {
@@ -44,13 +41,18 @@ namespace TodoTasks.ViewModel.Commands
         {
             string taskText = parameter as string;
 
-            //TODO: fix this as well as the xaml bindings on the parameters if needed
             //create a new task
-            Task newTask = new Task(TasksViewModel.SelectedTasklist.TasklistID);
-            newTask.Name = taskText;
+            Task newTask = new Task(TasksViewModel.SelectedTasklist.TasklistID)
+            {
+                Name = taskText
+            };
 
-            //assign the task list back to the property on the viewModel
+            //don't add this directly to the observable collection
+            //add it to the list of tasks against the task list
             this.TasksViewModel.TasksList.Add(newTask);
+            this.TasksViewModel.SelectedTasklist.Tasks.Add(newTask);
+
+            //set the add a task text box to blank
             this.TasksViewModel.AddaTaskText = "";
 
         }
