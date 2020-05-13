@@ -21,6 +21,8 @@ namespace TodoTasks.Model
         public bool Important { get; set; }
 
         public string Notes { get; set; }
+
+        public List<string> Subtasks { get; set; }
   
         //!Events
 

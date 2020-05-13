@@ -20,8 +20,7 @@ namespace TodoTasks.ViewModel
 
         public ObservableCollection<Task> TasksList { get; set; }
 
-        //Removing subtasks to implement afterward
-        ////public ObservableCollection<string> Subtasks { get; set; }
+        public ObservableCollection<string> Subtasks { get; set; }
 
         private Tasklist _selectedTasklist;
         public Tasklist SelectedTasklist
@@ -30,6 +29,7 @@ namespace TodoTasks.ViewModel
             set 
             { 
                 _selectedTasklist = value;
+
                 this.TasksList.Clear();
                 if(SelectedTasklist != null)
                 {
@@ -56,6 +56,34 @@ namespace TodoTasks.ViewModel
             set
             {
                 _selectedTask = value;
+                
+
+                
+                if (SelectedTasklist != null)
+                {
+                    if (SelectedTasklist.Tasks != null)
+                    {
+                        if (SelectedTasklist.Tasks.Count > 0)
+                        {
+                            if(SelectedTask != null)
+                            {
+                                this.Subtasks.Clear();
+                                if (SelectedTask.Subtasks != null)
+                                {
+                                    
+                                    if (SelectedTask.Subtasks.Count > 0)
+                                    {
+                                        foreach (string subTask in this.SelectedTask.Subtasks)
+                                        {
+                                            this.Subtasks.Add(subTask);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
                 PropertyUpdated("SelectedTask");
             }
         }
@@ -125,6 +153,8 @@ namespace TodoTasks.ViewModel
             };
 
             this.TasksList = new ObservableCollection<Task>();
+
+            this.Subtasks = new ObservableCollection<string>();
 
             this.SelectedTasklist = TasklistList[0];
 

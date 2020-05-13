@@ -6,6 +6,14 @@
 
     <Application.Resources>
         
+        <!--List View Style-->
+        <Style x:Key="myListviewStyle" TargetType="ListView">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+        </Style>
+        
         <!-- List View Item Container style (unnamed and applies to all listviews)-->
         <Style TargetType="ListViewItem">
 
@@ -63,7 +71,7 @@
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Foreground" Value="Gainsboro"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontSize" Value="15"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Width" Value="Auto"/>
 

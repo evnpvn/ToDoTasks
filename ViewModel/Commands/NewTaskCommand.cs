@@ -52,6 +52,9 @@ namespace TodoTasks.ViewModel.Commands
             this.TasksViewModel.TasksList.Add(newTask);
             this.TasksViewModel.SelectedTasklist.Tasks.Add(newTask);
 
+            ////set the selected task to the newly created task
+            //this.TasksViewModel.SelectedTask = newTask;
+
             //set the add a task text box to blank
             this.TasksViewModel.AddaTaskText = "";
 
