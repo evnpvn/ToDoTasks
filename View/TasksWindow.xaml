@@ -8,7 +8,14 @@
         xmlns:c="clr-namespace:TodoTasks.ViewModel.Converters"
         mc:Ignorable="d"
         Title="To Do tasks" Height="600" Width="900"
-        MinHeight="150" MinWidth="250" Background="Transparent">
+        MinHeight="150" MinWidth="250" Background="Transparent" WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize"
+        WindowStyle="ThreeDBorderWindow">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="20"/>
+    </WindowChrome.WindowChrome>
+
 
     <Window.Resources>
         <vm:TasksViewModel x:Key="vm"/>
@@ -17,56 +24,57 @@
     </Window.Resources>
 
 
-    <DockPanel DataContext="{StaticResource vm}">
+    <DockPanel DataContext="{StaticResource vm}" Background="#191919">
 
         <!--Tasklist Panel-->
-        <StackPanel DockPanel.Dock="Left" Width="200" HorizontalAlignment="Left" 
+        <Grid>
+            <StackPanel DockPanel.Dock="Left" Width="200" HorizontalAlignment="Left"
                         Background="#252527">
 
-            <TextBlock Text="Task lists" FontSize="18" Foreground="Violet" Margin="7,5,5,0" />
+                <TextBlock Text="Task lists" FontSize="18" Foreground="Violet" Margin="7,5,5,0"/>
 
-            <ListView ItemsSource="{Binding TasklistList}" BorderThickness="0" 
-                      SelectedItem="{Binding SelectedTasklist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      Background="Transparent" Margin="15,5,10,5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <ListView ItemsSource="{Binding TasklistList}" BorderThickness="0" 
+                          SelectedItem="{Binding SelectedTasklist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Background="Transparent" Margin="15,5,10,5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
 
-                <ListView.ItemTemplate>
+                    <ListView.ItemTemplate>
 
-                    <DataTemplate>
-                        <Grid>
-                            <TextBlock Text="{Binding Name}" Style="{Binding Source={StaticResource myTextblockStyle}}"
-                                       Visibility="{Binding Source={StaticResource vm}, Path=IsTasklistRenaming, 
-                                                 Converter={StaticResource BooltoVisOpposite}}"/>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock Text="{Binding Name}" Style="{Binding Source={StaticResource myTextblockStyle}}"
+                                           Visibility="{Binding Source={StaticResource vm}, Path=IsTasklistRenaming, 
+                                                     Converter={StaticResource BooltoVisOpposite}}"/>
 
-                            <TextBox Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource myRenamingTextboxStyle}"
-                                     Visibility="{Binding Source={StaticResource vm}, Path=IsTasklistRenaming, 
-                                                 Converter={StaticResource BooltoVis}}" />
-                            <b:Interaction.Triggers>
-                                <b:EventTrigger EventName="LostFocus">
-                                    <b:InvokeCommandAction Command="{Binding Source={StaticResource vm}, Path=EndRenameCommand}"
-                                                               CommandParameter="{Binding Source={StaticResource vm}, Path=SelectedTasklist}" />
-                                </b:EventTrigger>
-                            </b:Interaction.Triggers>
+                                <TextBox Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource myRenamingTextboxStyle}"
+                                         Visibility="{Binding Source={StaticResource vm}, Path=IsTasklistRenaming, 
+                                                     Converter={StaticResource BooltoVis}}" />
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="LostFocus">
+                                        <b:InvokeCommandAction Command="{Binding Source={StaticResource vm}, Path=EndRenameCommand}"
+                                                                   CommandParameter="{Binding Source={StaticResource vm}, Path=SelectedTasklist}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
 
-                            <Grid.ContextMenu>
-                                <ContextMenu DataContext="{StaticResource vm}">
-                                    <MenuItem Header="Rename list" Command="{Binding StartRenameCommand}"  CommandParameter="{Binding SelectedTasklist}" />
-                                    <MenuItem Header="Duplicate list"/>
-                                    <Separator/>
-                                    <MenuItem Header="Delete list"/>
-                                </ContextMenu>
-                            </Grid.ContextMenu>
-                        </Grid>
+                                <Grid.ContextMenu>
+                                    <ContextMenu DataContext="{StaticResource vm}">
+                                        <MenuItem Header="Rename list" Command="{Binding StartRenameCommand}"  CommandParameter="{Binding SelectedTasklist}" />
+                                        <MenuItem Header="Duplicate list"/>
+                                        <Separator/>
+                                        <MenuItem Header="Delete list"/>
+                                    </ContextMenu>
+                                </Grid.ContextMenu>
+                            </Grid>
 
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
 
-            </ListView>
+                </ListView>
 
-            <Button Style="{StaticResource myButtonStyle}" Content="+New list" Margin="10,5,5,5"
-                    Command="{Binding NewTasklistCommand}"/>
-
-        </StackPanel>
-
+                <Button Style="{StaticResource myButtonStyle}" Content="+New list" Margin="10,5,5,5" Foreground="DarkGray"
+                        Command="{Binding NewTasklistCommand}"/>
+            
+            </StackPanel>
+        </Grid>
         <!--Subtask Panel-->
         <StackPanel DockPanel.Dock="Right" Width="270" HorizontalAlignment="Right"
                     Background="#252527">
