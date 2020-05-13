@@ -9,6 +9,7 @@ namespace TodoTasks.ViewModel.Converters
 {
     public class BooltoVis : IValueConverter
     {
+        //!Methods
         //This conversion is used for the renamed task lists
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

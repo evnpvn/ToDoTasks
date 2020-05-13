@@ -106,6 +106,8 @@ namespace TodoTasks.ViewModel
 
             this.StartRenameCommand = new StartRenameCommand(this);
             this.EndRenameCommand = new EndRenameCommand(this);
+
+
         }
 
         //!Methods

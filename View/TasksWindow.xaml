@@ -16,9 +16,9 @@
         <c:BooltoVisOpposite x:Key="BooltoVisOpposite"/>
     </Window.Resources>
 
-    
+
     <DockPanel DataContext="{StaticResource vm}">
-        
+
         <!--Tasklist Panel-->
         <StackPanel DockPanel.Dock="Left" Width="200" HorizontalAlignment="Left"
                         Background="#252527">
@@ -28,37 +28,9 @@
             <ListView ItemsSource="{Binding TasklistList}" BorderThickness="0" 
                       SelectedItem="{Binding SelectedTasklist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       Background="Transparent" Margin="15,5,10,5">
-                
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListViewItem}">
 
-                        <Setter Property="Width" Value="Auto"/>
-                        <Setter Property="HorizontalAlignment" Value="Left"/>
-                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                        <Setter Property="Template">
-
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                    <Grid x:Name="myListViewGrid">
-                                        <ContentPresenter />
-                                    </Grid>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="myListViewGrid" Property="Background" Value="#303030"/>
-                                        </Trigger>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter TargetName="myListViewGrid" Property="Background" Value="#303030"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                    
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListView.ItemContainerStyle>
-                
                 <ListView.ItemTemplate>
-                    
+
                     <DataTemplate>
                         <Grid>
                             <TextBlock Text="{Binding Name}" Style="{Binding Source={StaticResource myTextblockStyle}}"
@@ -82,18 +54,17 @@
                                     <Separator/>
                                     <MenuItem Header="Delete list"/>
                                 </ContextMenu>
-                            </Grid.ContextMenu>        
+                            </Grid.ContextMenu>
                         </Grid>
 
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                
-                
+
             </ListView>
 
             <Button Style="{StaticResource myButtonStyle}" Content="+New list" Margin="10,5,5,5"
                     Command="{Binding NewTasklistCommand}"/>
-            
+
         </StackPanel>
 
         <!--Subtask Panel-->
@@ -127,8 +98,8 @@
         <StackPanel Background="#191919">
             <TextBlock Text="{Binding SelectedTasklist.Name}" Foreground="Gainsboro" FontSize="22" FontWeight="DemiBold" Margin="25,10,5,5"/>
 
-            <ListView ItemsSource="{Binding TasksList}"
-                      SelectedItem="{Binding SelectedTask}"
+            <ListView ItemsSource="{Binding TasksList}" BorderThickness="0"
+                      SelectedItem="{Binding SelectedTask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       Background="Transparent" Margin="25,10,25,5">
 
             </ListView>
