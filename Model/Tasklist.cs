@@ -17,7 +17,6 @@ namespace TodoTasks.Model
 
         public string Name { get; set; }
 
-
         //!Ctor
         public Tasklist()
         {

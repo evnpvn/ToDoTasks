@@ -50,7 +50,8 @@ namespace TodoTasks.ViewModel.Commands
             newTask.Name = taskText;
 
             //assign the task list back to the property on the viewModel
-            TasksViewModel.TasksList.Add(newTask);
+            this.TasksViewModel.TasksList.Add(newTask);
+            this.TasksViewModel.AddaTaskText = "";
 
         }
     }

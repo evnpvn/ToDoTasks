@@ -45,6 +45,18 @@ namespace TodoTasks.ViewModel
             }
         }
 
+        private string _addaTaskText;
+        public string AddaTaskText
+        {
+            get { return _addaTaskText; }
+            set 
+            {
+                _addaTaskText = value;
+                PropertyUpdated("AddaTaskText");
+            }
+        }
+
+
         private int _taskCount;
         public int TaskCount
         {
@@ -106,8 +118,6 @@ namespace TodoTasks.ViewModel
 
             this.StartRenameCommand = new StartRenameCommand(this);
             this.EndRenameCommand = new EndRenameCommand(this);
-
-
         }
 
         //!Methods

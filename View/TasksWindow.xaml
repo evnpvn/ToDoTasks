@@ -8,7 +8,7 @@
         xmlns:c="clr-namespace:TodoTasks.ViewModel.Converters"
         mc:Ignorable="d"
         Title="To Do tasks" Height="600" Width="900"
-        MinHeight="150" MinWidth="250">
+        MinHeight="150" MinWidth="250" Background="Transparent">
 
     <Window.Resources>
         <vm:TasksViewModel x:Key="vm"/>
@@ -20,14 +20,14 @@
     <DockPanel DataContext="{StaticResource vm}">
 
         <!--Tasklist Panel-->
-        <StackPanel DockPanel.Dock="Left" Width="200" HorizontalAlignment="Left"
+        <StackPanel DockPanel.Dock="Left" Width="200" HorizontalAlignment="Left" 
                         Background="#252527">
 
             <TextBlock Text="Task lists" FontSize="18" Foreground="Violet" Margin="7,5,5,0" />
 
             <ListView ItemsSource="{Binding TasklistList}" BorderThickness="0" 
                       SelectedItem="{Binding SelectedTasklist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      Background="Transparent" Margin="15,5,10,5">
+                      Background="Transparent" Margin="15,5,10,5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
 
                 <ListView.ItemTemplate>
 
@@ -84,7 +84,8 @@
         <StackPanel DockPanel.Dock="Bottom" Background="#191919">
             <Grid>
                 <TextBox Style="{StaticResource myTextBoxPromptStyle}" Text=" + Add a task" Focusable="False"/>
-                <TextBox Style="{StaticResource myTextBoxStyle}" AcceptsReturn="False">
+                <TextBox Style="{StaticResource myTextBoxStyle}" AcceptsReturn="False" 
+                         Text="{Binding AddaTaskText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return"
                                         Command="{Binding NewTaskCommand}"
@@ -97,10 +98,42 @@
         <!--List of Tasks in task list -->
         <StackPanel Background="#191919">
             <TextBlock Text="{Binding SelectedTasklist.Name}" Foreground="Gainsboro" FontSize="22" FontWeight="DemiBold" Margin="25,10,5,5"/>
-
             <ListView ItemsSource="{Binding TasksList}" BorderThickness="0"
                       SelectedItem="{Binding SelectedTask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      Background="Transparent" Margin="25,10,25,5">
+                      Background="Transparent" Margin="10,0,10,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+
+                <ListView.ItemTemplate>
+
+                    <DataTemplate>
+                        <Border BorderBrush="#191919" BorderThickness="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0" Width="20" Height="20" Margin="0,0,7,0" >
+                                <Image.Source>
+                                    <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
+                                                     UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\greycircle.png"/>
+                                </Image.Source>
+                            </Image>
+                            <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="0,5,3000,5"
+                                           Style="{Binding Source={StaticResource myTextblockStyle}}"/>
+
+                            <Grid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Add to My Day"/>
+                                    <Separator/>
+                                    <MenuItem Header="Mark as Important"/>
+                                    <MenuItem Header="Mark as Completed"/>
+                                </ContextMenu>
+                            </Grid.ContextMenu>
+                        </Grid>
+                        </Border>
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
 
             </ListView>
         </StackPanel>

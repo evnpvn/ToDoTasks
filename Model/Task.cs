@@ -22,8 +22,6 @@ namespace TodoTasks.Model
 
         public string Notes { get; set; }
   
-        public DateTime DueDate { get; set; }
-
         //!Events
 
         //!Ctor
