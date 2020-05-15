@@ -47,8 +47,8 @@ namespace TodoTasks.ViewModel.Commands
                 Name = taskText
             };
 
-            //don't add this directly to the observable collection
-            //add it to the list of tasks against the task list
+            //add this directly to the observable collection
+            //add it to the list of tasks against the task list as well
             this.TasksViewModel.TasksList.Add(newTask);
             this.TasksViewModel.SelectedTasklist.Tasks.Add(newTask);
 

@@ -22,7 +22,7 @@ namespace TodoTasks.Model
 
         public string Notes { get; set; }
 
-        public List<string> Subtasks { get; set; }
+        public List<Subtask> Subtasks { get; set; }
   
         //!Events
 
@@ -31,6 +31,7 @@ namespace TodoTasks.Model
         {
             this.TaskID = Guid.NewGuid().ToString();
             this.TasklistID = tasklistId;
+            this.Subtasks = new List<Subtask>();
         }
 
         //!Methods

@@ -11,7 +11,6 @@
         Title="To Do tasks" Height="600" Width="1150"
         MinHeight="150" MinWidth="250" Background="Transparent" WindowStartupLocation="CenterScreen"
         ResizeMode="CanResize"
-        WindowStyle="ToolWindow"
         BorderThickness="1" BorderBrush="#505050">
 
     <WindowChrome.WindowChrome>
@@ -23,6 +22,7 @@
         <vm:TasksViewModel x:Key="vm"/>
         <c:BooltoVis x:Key="BooltoVis"/>
         <c:BooltoVisOpposite x:Key="BooltoVisOpposite"/>
+        <c:BooltoVisSubtasksPane x:Key="BooltoVisSubtasks"/>
     </Window.Resources>
 
 
@@ -87,7 +87,8 @@
 
         <!--Subtask Panel-->
         <StackPanel DockPanel.Dock="Right" Width="360" HorizontalAlignment="Right"
-                    Background="#252527" Visibility="Visible">
+                    Background="#252527" Visibility="{Binding SubtasksPaneVisible, Converter={StaticResource BooltoVisSubtasks}, 
+                                                      Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             
             <uc:titlebarMenuButtons/>
 
@@ -118,7 +119,7 @@
             </Grid>
             
 
-            <ListView Margin="10,45,10,5" ItemsSource="{Binding SelectedTask.Subtasks}" 
+            <ListView Margin="15,3,10,5" ItemsSource="{Binding Subtasks}" 
                       Style="{Binding Source={StaticResource myListviewStyle}}" >
 
                 <ListView.ItemTemplate>
@@ -126,7 +127,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="25"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="300"/>
                             </Grid.ColumnDefinitions>
 
                             <Image Grid.Column="0" Width="15" Height="15" Margin="0,0,7,0" >
@@ -136,8 +137,9 @@
                                 </Image.Source>
                             </Image>
                             
-                            <!--might need some "to string" to bind the subtasks list-->
-                            <TextBlock Grid.Column="1" Text="{Binding}"/>
+                            <TextBox Grid.Column="1" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{Binding Source={StaticResource mySubtaskTextBoxStyle}}"                           
+                                     />
 
                         </Grid>
                          
@@ -145,14 +147,16 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button Style="{StaticResource myButtonStyle}" Content="+   Next step" Margin="15,5,5,5" Foreground="Violet"/>
+            <Button Style="{StaticResource myButtonStyle}" Command="{Binding NewSubtaskCommand}" CommandParameter="{Binding}"
+                    Content="+   Next step" Margin="15,5,5,5" Foreground="Violet"/>
 
         </StackPanel>
 
         <!--Black separating border-->
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,0,0,0"
-                       Width="1" Background="Black" Visibility="Visible"/>
+                       Width="1" Background="Black" Visibility="{Binding SubtasksPaneVisible, Converter={StaticResource BooltoVisSubtasks},
+                                                                 Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
         <!--Tasks-->

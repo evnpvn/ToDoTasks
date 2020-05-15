@@ -9,7 +9,6 @@ using TodoTasks.ViewModel.Commands;
 namespace TodoTasks.ViewModel
 {
     public class TasksViewModel : INotifyPropertyChanged
-
     {
         //worst case scenario the model in the VM is an exact copy of the model
         //best case scenario it is only what is needed
@@ -20,7 +19,7 @@ namespace TodoTasks.ViewModel
 
         public ObservableCollection<Task> TasksList { get; set; }
 
-        public ObservableCollection<string> Subtasks { get; set; }
+        public ObservableCollection<Subtask> Subtasks { get; set; }
 
         private Tasklist _selectedTasklist;
         public Tasklist SelectedTasklist
@@ -37,15 +36,19 @@ namespace TodoTasks.ViewModel
                     {
                         if(SelectedTasklist.Tasks.Count > 0)
                         {
+                            this.SelectedTask = null;
+                            this.SubtasksPaneVisible = false;
+
                             foreach (Task task in this.SelectedTasklist.Tasks)
                             {
                                 this.TasksList.Add(task);
                             }
                         }
-                        
                     }
                 }          
                 PropertyUpdated("SelectedTasklist");
+                this.SubtasksPaneVisible = false;
+
             }
         }
 
@@ -57,29 +60,29 @@ namespace TodoTasks.ViewModel
             {
                 _selectedTask = value;
                 
-
-                
                 if (SelectedTasklist != null)
                 {
                     if (SelectedTasklist.Tasks != null)
                     {
                         if (SelectedTasklist.Tasks.Count > 0)
                         {
-                            if(SelectedTask != null)
+                            if (SelectedTask != null)
                             {
+                                this.SubtasksPaneVisible = true;
                                 this.Subtasks.Clear();
                                 if (SelectedTask.Subtasks != null)
                                 {
-                                    
+
                                     if (SelectedTask.Subtasks.Count > 0)
                                     {
-                                        foreach (string subTask in this.SelectedTask.Subtasks)
+                                        foreach (Subtask subTask in this.SelectedTask.Subtasks)
                                         {
                                             this.Subtasks.Add(subTask);
                                         }
                                     }
                                 }
                             }
+                            else this.SubtasksPaneVisible = false;
                         }
 
                     }
@@ -133,8 +136,21 @@ namespace TodoTasks.ViewModel
             }
         }
 
+        private bool _subtasksPaneVisible;
+        public bool SubtasksPaneVisible
+        {
+            get { return _subtasksPaneVisible; }
+            set 
+            { 
+                _subtasksPaneVisible = value;
+                PropertyUpdated("SubtasksPaneVisible");
+            }
+        }
+
+
         public NewTasklistCommand NewTasklistCommand { get; set; }
         public NewTaskCommand NewTaskCommand { get; set; }
+        public NewSubtaskCommand NewSubtaskCommand { get; set; }
 
         public StartRenameCommand StartRenameCommand { get; set; }
         public EndRenameCommand EndRenameCommand { get; set; }
@@ -154,12 +170,13 @@ namespace TodoTasks.ViewModel
 
             this.TasksList = new ObservableCollection<Task>();
 
-            this.Subtasks = new ObservableCollection<string>();
+            this.Subtasks = new ObservableCollection<Subtask>();
 
             this.SelectedTasklist = TasklistList[0];
 
             this.NewTasklistCommand = new NewTasklistCommand(this);
             this.NewTaskCommand = new NewTaskCommand(this);
+            this.NewSubtaskCommand = new NewSubtaskCommand(this);
 
             this.StartRenameCommand = new StartRenameCommand(this);
             this.EndRenameCommand = new EndRenameCommand(this);
