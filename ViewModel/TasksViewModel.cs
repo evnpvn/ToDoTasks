@@ -155,6 +155,8 @@ namespace TodoTasks.ViewModel
         public StartRenameCommand StartRenameCommand { get; set; }
         public EndRenameCommand EndRenameCommand { get; set; }
 
+        public MarkImportantCommand MarkImportantCommand { get; set; }
+
         //!Events
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -180,6 +182,8 @@ namespace TodoTasks.ViewModel
 
             this.StartRenameCommand = new StartRenameCommand(this);
             this.EndRenameCommand = new EndRenameCommand(this);
+
+            this.MarkImportantCommand = new MarkImportantCommand(this);
         }
 
         //!Methods

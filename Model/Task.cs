@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TodoTasks.Model
 {
-    public class Task
+    public class Task : INotifyPropertyChanged
     {
         //!Fields
 
@@ -18,13 +18,24 @@ namespace TodoTasks.Model
 
         public bool Completed { get; set; }
 
-        public bool Important { get; set; }
+        private bool _important;
+
+        public bool Important
+        {
+            get { return _important; }
+            set
+            {
+                _important = value;
+                PropertyUpdated("Important");
+            }
+        }
 
         public string Notes { get; set; }
 
         public List<Subtask> Subtasks { get; set; }
-  
+
         //!Events
+        public event PropertyChangedEventHandler PropertyChanged;
 
         //!Ctor
         public Task(string tasklistId)
@@ -35,5 +46,10 @@ namespace TodoTasks.Model
         }
 
         //!Methods
+        public void PropertyUpdated(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
     }
 }

@@ -46,19 +46,40 @@
                 <Image Grid.Column="0" Width="20" Height="20" Margin="0,0,0,0" >
                     <Image.Source>
                         <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
-                                                     UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\greycircle.png"/>
+                                                     UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\greycircle.png"/>
                     </Image.Source>
                 </Image>
 
                 <TextBlock Grid.Column="1" Text="{Binding SelectedTask.Name}" Foreground="DarkGray" FontSize="20" FontWeight="DemiBold"
                            Margin="7,0,0,0"/>
 
-                <Image Grid.Column="2" Width="17" Height="17" Margin="0,0,7,0" >
-                    <Image.Source>
-                        <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
-                                                    UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\greystar.png"/>
-                    </Image.Source>
-                </Image>
+                
+                <Button Grid.Column="2" Width="17" Height="17" Margin="0,0,7,0" Background="Transparent" 
+                        Command="{Binding MarkImportantCommand}" CommandParameter="{Binding SelectedTask}" 
+                        Style="{Binding Source={StaticResource myGreyStarButton}}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Style="{Binding Source={StaticResource myButtonImageStyle}}"
+                               Visibility="{Binding SelectedTask.Important, Converter={StaticResource BooltoVisOpposite}}">
+                            <Image.Source>
+                                <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
+                                                    UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\greystar.png"/>
+                            </Image.Source>
+                        </Image>
+                        <Image Grid.Column="0"  Style="{Binding Source={StaticResource myButtonImageStyle}}"
+                               Visibility="{Binding SelectedTask.Important, Converter={StaticResource BooltoVis}}">
+                            <Image.Source>
+                                <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
+                                                    UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\greystarFilled.png"/>
+                            </Image.Source>
+                        </Image>
+                        
+                    </Grid>
+                    
+                </Button>
+                
             </Grid>
 
 
@@ -76,7 +97,7 @@
                             <Image Grid.Column="0" Width="15" Height="15" Margin="0,0,7,0" >
                                 <Image.Source>
                                     <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
-                                                     UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\greycircle.png"/>
+                                                     UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\greycircle.png"/>
                                 </Image.Source>
                             </Image>
 
@@ -201,7 +222,7 @@
                                 <Image Grid.Column="0" Width="20" Height="20" Margin="0,0,7,0" >
                                     <Image.Source>
                                         <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
-                                                     UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\greycircle.png"/>
+                                                     UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\greycircle.png"/>
                                     </Image.Source>
                                 </Image>
 
@@ -211,7 +232,7 @@
                                 <Image Grid.Column="2" Width="17" Height="17" Margin="0,0,7,0" >
                                     <Image.Source>
                                         <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
-                                                    UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\greystar.png"/>
+                                                    UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\greystar.png"/>
                                     </Image.Source>
                                 </Image>
 

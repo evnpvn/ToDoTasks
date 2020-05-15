@@ -5,7 +5,7 @@
              StartupUri="View/TasksWindow.xaml">
 
     <Application.Resources>
-        
+
         <!--List View Style-->
         <Style x:Key="myListviewStyle" TargetType="ListView">
             <Setter Property="Background" Value="Transparent"/>
@@ -13,7 +13,7 @@
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
         </Style>
-        
+
         <!-- List View Item Container style (unnamed and applies to all listviews)-->
         <Style TargetType="ListViewItem">
 
@@ -81,7 +81,7 @@
                         <Border x:Name="templateBorder" CornerRadius="5">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,5,13,5"/>
                         </Border>
-                         <ControlTemplate.Triggers>
+                        <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="templateBorder" Property="Background" Value="#303030"/>
                             </Trigger>
@@ -134,7 +134,7 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Margin" Value="25,5,25,20"/>
             <Setter Property="SelectionBrush" Value="#BBBBBB"/>
-            
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBoxBase}">
@@ -203,6 +203,38 @@
             </Setter>
         </Style>
 
+        <!--Style for images embedded in buttons-->
+        <Style x:Key="myButtonImageStyle" TargetType="Image">
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        
+
+        <!--Style for Grey star button-->
+        <Style x:Key="myGreyStarButton" TargetType="Button">
+            <Setter Property="Background" Value="{x:Null}" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="{TemplateBinding Width}"
+                                Height="{TemplateBinding Height}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              TextElement.Foreground="{TemplateBinding Foreground}"
+                                              TextElement.FontFamily="{TemplateBinding FontFamily}"
+                                              TextElement.FontSize="{TemplateBinding FontSize}"
+                                              TextElement.FontStretch="{TemplateBinding FontStretch}"
+                                              TextElement.FontWeight="{TemplateBinding FontWeight}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Application.Resources>
-    
+
 </Application>

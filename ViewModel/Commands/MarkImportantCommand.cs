@@ -1,0 +1,72 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows.Input;
+using TodoTasks.Model;
+
+namespace TodoTasks.ViewModel.Commands
+{
+    public class MarkImportantCommand : ICommand
+    {
+        //!Properties
+        public TasksViewModel TasksViewModel { get; set; }
+
+        //!Ctor
+        public MarkImportantCommand(TasksViewModel tasksViewModel)
+        {
+            this.TasksViewModel = tasksViewModel;
+        }
+
+        //!Events
+        public event EventHandler CanExecuteChanged;
+
+        //!Methods
+        public bool CanExecute(object parameter)
+        {
+            //todo: you can only mark important if the task you are trying to mark important == selected task
+            //I may need to pass the parameter in as the listview object.
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            Tasklist importantList = (this.TasksViewModel.TasklistList.Where(tlist => tlist.Name == "Important").FirstOrDefault()) as Tasklist;
+
+            if (this.TasksViewModel.SelectedTask.Important == false)
+            {
+                this.TasksViewModel.SelectedTask.Important = true;             
+
+                //if the important list doesn't contain this task, add it
+                if (importantList.Tasks.Contains(this.TasksViewModel.SelectedTask) == false)
+                {
+                    importantList.Tasks.Add(this.TasksViewModel.SelectedTask);
+
+                    //is the list you are currently looking at is the important task list 
+                    //then add it to that list as well
+                    if(this.TasksViewModel.SelectedTasklist.Name == "Important")
+                    {
+                        TasksViewModel.SelectedTasklist.Tasks.Add(this.TasksViewModel.SelectedTask);
+                    }
+                }
+            }
+            else
+            {
+                this.TasksViewModel.SelectedTask.Important = false;
+
+                //if the important list does contain this task, Remove it
+                if (importantList.Tasks.Contains(this.TasksViewModel.SelectedTask) == true)
+                {
+                    importantList.Tasks.Remove(this.TasksViewModel.SelectedTask);
+
+                    //is the list you are currently looking at is the important task list 
+                    //then remove it to that list as well
+                    if (this.TasksViewModel.SelectedTasklist.Name == "Important")
+                    {
+                        TasksViewModel.SelectedTasklist.Tasks.Remove(this.TasksViewModel.SelectedTask);
+                    }
+                }
+            }
+        }
+    }
+}

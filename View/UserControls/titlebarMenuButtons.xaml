@@ -19,21 +19,21 @@
         <Image>
                 <Image.Source>
                     <BitmapImage DecodePixelWidth="68" DecodePixelHeight="48" 
-                                 UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\minimizeButton.png"/>
+                                 UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\minimizeButton.png"/>
                 </Image.Source>
             </Image>
 
             <Image>
                 <Image.Source>
                     <BitmapImage DecodePixelWidth="68" DecodePixelHeight="48" 
-                                 UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\maximizeButton.png"/>
+                                 UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\maximizeButton.png"/>
                 </Image.Source>
             </Image>
 
             <Image>
                 <Image.Source>
                     <BitmapImage DecodePixelWidth="68" DecodePixelHeight="48" 
-                                 UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\exitButton.png"/>
+                                 UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\exitButton.png"/>
                 </Image.Source>
             </Image>
         </StackPanel>
