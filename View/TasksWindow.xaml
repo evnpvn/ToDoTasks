@@ -56,7 +56,7 @@
                 <!--<uc:ImportantStarButton Grid.Column="2" Width="17" Height="17" Margin="0,0,7,0"/>-->
                 <Grid Grid.Column="2" Width="17" Height="17" Margin="0,0,7,0">
                     <Button Background="Transparent"  DataContext="{Binding Source={StaticResource vm}}"
-                            Command="{Binding MarkImportantCommand}" CommandParameter="{Binding SelectedTask}" 
+                            Command="{Binding MarkImportantCommand}" CommandParameter="{Binding SelectedTask.Name}" 
                             Style="{Binding Source={StaticResource myGreyStarButton}}" >
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -229,7 +229,7 @@
 
                                 <Grid Grid.Column="2" Width="17" Height="17" Margin="0,0,7,0">
                                     <Button Background="Transparent" 
-                                            Command="{Binding Source={StaticResource vm}, Path=MarkImportantCommand}" CommandParameter="{Binding Source={StaticResource vm}, Path=SelectedTask}" 
+                                            Command="{Binding Source={StaticResource vm}, Path=MarkImportantCommand}" CommandParameter="{Binding Name}" 
                                             Style="{Binding Source={StaticResource myGreyStarButton}}" >
                                         <Grid>
                                             <Grid.ColumnDefinitions>

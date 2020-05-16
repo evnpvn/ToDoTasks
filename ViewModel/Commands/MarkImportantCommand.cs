@@ -19,14 +19,29 @@ namespace TodoTasks.ViewModel.Commands
         }
 
         //!Events
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
 
         //!Methods
         public bool CanExecute(object parameter)
         {
-            //todo: you can only mark important if the task you are trying to mark important == selected task
-            //I may need to pass the parameter in as the listview object.
-            return true;
+            //you can only mark important if the task you are trying to mark important == selected task
+            if (parameter is string)
+            {
+                if (this.TasksViewModel.SelectedTask != null)
+                {
+                    if (parameter as string == this.TasksViewModel.SelectedTask.Name)
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+                else return false;
+            }
+            else return false;
         }
 
         public void Execute(object parameter)
