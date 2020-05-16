@@ -58,6 +58,9 @@ namespace TodoTasks.ViewModel.Commands
             //set the add a task text box to blank
             this.TasksViewModel.AddaTaskText = "";
 
+            //update the task count
+            this.TasksViewModel.SelectedTasklist.TotalCount = this.TasksViewModel.SelectedTasklist.Tasks.Count.ToString();
         }
+
     }
 }

@@ -138,30 +138,41 @@
 
                         <DataTemplate>
                             <Grid>
-                                <TextBlock Text="{Binding Name}" Style="{Binding Source={StaticResource myTextblockStyle}}"
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="140"/>
+                                    <ColumnDefinition Width="20"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Grid Grid.Column="0" HorizontalAlignment="Left">
+                                    <TextBlock Text="{Binding Name}" Style="{Binding Source={StaticResource myTextblockStyle}}"
                                            Visibility="{Binding Source={StaticResource vm}, Path=IsTasklistRenaming, 
                                                      Converter={StaticResource BooltoVisOpposite}}"/>
 
-                                <TextBox Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource myRenamingTextboxStyle}"
+                                    <TextBox Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource myRenamingTextboxStyle}"
                                          Visibility="{Binding Source={StaticResource vm}, Path=IsTasklistRenaming, 
                                                      Converter={StaticResource BooltoVis}}" />
-                                <b:Interaction.Triggers>
-                                    <b:EventTrigger EventName="LostFocus">
-                                        <b:InvokeCommandAction Command="{Binding Source={StaticResource vm}, Path=EndRenameCommand}"
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="LostFocus">
+                                            <b:InvokeCommandAction Command="{Binding Source={StaticResource vm}, Path=EndRenameCommand}"
                                                                    CommandParameter="{Binding Source={StaticResource vm}, Path=SelectedTasklist}" />
-                                    </b:EventTrigger>
-                                </b:Interaction.Triggers>
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
 
-                                <Grid.ContextMenu>
-                                    <ContextMenu DataContext="{StaticResource vm}">
-                                        <MenuItem Header="Rename list" Command="{Binding StartRenameCommand}"  CommandParameter="{Binding SelectedTasklist}" />
-                                        <MenuItem Header="Duplicate list"/>
-                                        <Separator/>
-                                        <MenuItem Header="Delete list"/>
-                                    </ContextMenu>
-                                </Grid.ContextMenu>
+                                    <Grid.ContextMenu>
+                                        <ContextMenu DataContext="{StaticResource vm}">
+                                            <MenuItem Header="Rename list" Command="{Binding StartRenameCommand}"  CommandParameter="{Binding SelectedTasklist}" />
+                                            <MenuItem Header="Duplicate list"/>
+                                            <Separator/>
+                                            <MenuItem Header="Delete list"/>
+                                        </ContextMenu>
+                                    </Grid.ContextMenu>
+                                </Grid>
+
+                                <TextBlock Grid.Column="1" Style="{Binding Source={StaticResource myTextblockStyle}}"
+                                           Foreground="DimGray" Margin="0,4,5,0"
+                                           Text="{Binding TotalCount}"/>
+
                             </Grid>
-
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
