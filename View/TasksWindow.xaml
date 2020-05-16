@@ -35,7 +35,6 @@
 
             <uc:titlebarMenuButtons/>
 
-
             <Grid Margin="10,20,0,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30"/>
@@ -53,35 +52,35 @@
                 <TextBlock Grid.Column="1" Text="{Binding SelectedTask.Name}" Foreground="DarkGray" FontSize="20" FontWeight="DemiBold"
                            Margin="7,0,0,0"/>
 
-                
-                <Button Grid.Column="2" Width="17" Height="17" Margin="0,0,7,0" Background="Transparent" 
-                        Command="{Binding MarkImportantCommand}" CommandParameter="{Binding SelectedTask}" 
-                        Style="{Binding Source={StaticResource myGreyStarButton}}" >
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Style="{Binding Source={StaticResource myButtonImageStyle}}"
+                <!--It didn't work to abstract the below ImportantStarbutton as a user control-->
+                <!--<uc:ImportantStarButton Grid.Column="2" Width="17" Height="17" Margin="0,0,7,0"/>-->
+                <Grid Grid.Column="2" Width="17" Height="17" Margin="0,0,7,0">
+                    <Button Background="Transparent"  DataContext="{Binding Source={StaticResource vm}}"
+                            Command="{Binding MarkImportantCommand}" CommandParameter="{Binding SelectedTask}" 
+                            Style="{Binding Source={StaticResource myGreyStarButton}}" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Style="{Binding Source={StaticResource myButtonImageStyle}}"
                                Visibility="{Binding SelectedTask.Important, Converter={StaticResource BooltoVisOpposite}}">
-                            <Image.Source>
-                                <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
+                                <Image.Source>
+                                    <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
                                                     UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\greystar.png"/>
-                            </Image.Source>
-                        </Image>
-                        <Image Grid.Column="0"  Style="{Binding Source={StaticResource myButtonImageStyle}}"
+                                </Image.Source>
+                            </Image>
+                            <Image Grid.Column="0"  Style="{Binding Source={StaticResource myButtonImageStyle}}"
                                Visibility="{Binding SelectedTask.Important, Converter={StaticResource BooltoVis}}">
-                            <Image.Source>
-                                <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
+                                <Image.Source>
+                                    <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
                                                     UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\greystarFilled.png"/>
-                            </Image.Source>
-                        </Image>
-                        
-                    </Grid>
-                    
-                </Button>
-                
-            </Grid>
+                                </Image.Source>
+                            </Image>
+                        </Grid>
+                    </Button>
+                </Grid>
 
+            </Grid>
 
             <ListView Margin="15,3,10,5" ItemsSource="{Binding Subtasks}" 
                       Style="{Binding Source={StaticResource myListviewStyle}}" >
@@ -104,7 +103,6 @@
                             <TextBox Grid.Column="1" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                      Style="{Binding Source={StaticResource mySubtaskTextBoxStyle}}"                           
                                      />
-
                         </Grid>
 
                     </DataTemplate>
@@ -229,12 +227,31 @@
                                 <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="0,10,10,10" Width="420"
                                            Style="{Binding Source={StaticResource myTextblockStyle}}"/>
 
-                                <Image Grid.Column="2" Width="17" Height="17" Margin="0,0,7,0" >
-                                    <Image.Source>
-                                        <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
+                                <Grid Grid.Column="2" Width="17" Height="17" Margin="0,0,7,0">
+                                    <Button Background="Transparent" 
+                                            Command="{Binding Source={StaticResource vm}, Path=MarkImportantCommand}" CommandParameter="{Binding Source={StaticResource vm}, Path=SelectedTask}" 
+                                            Style="{Binding Source={StaticResource myGreyStarButton}}" >
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Grid.Column="0" Style="{Binding Source={StaticResource myButtonImageStyle}}"
+                                                    Visibility="{Binding Important, Converter={StaticResource BooltoVisOpposite}}">
+                                                <Image.Source>
+                                                    <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
                                                     UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\greystar.png"/>
-                                    </Image.Source>
-                                </Image>
+                                                </Image.Source>
+                                            </Image>
+                                            <Image Grid.Column="0"  Style="{Binding Source={StaticResource myButtonImageStyle}}"
+                                                    Visibility="{Binding Important, Converter={StaticResource BooltoVis}}">
+                                                <Image.Source>
+                                                    <BitmapImage DecodePixelWidth="30" DecodePixelHeight="30" 
+                                                    UriSource="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\greystarFilled.png"/>
+                                                </Image.Source>
+                                            </Image>
+                                        </Grid>
+                                    </Button>
+                                </Grid>
 
                                 <Grid.ContextMenu>
                                     <ContextMenu>

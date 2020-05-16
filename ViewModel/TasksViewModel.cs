@@ -48,7 +48,6 @@ namespace TodoTasks.ViewModel
                 }          
                 PropertyUpdated("SelectedTasklist");
                 this.SubtasksPaneVisible = false;
-
             }
         }
 
@@ -72,7 +71,6 @@ namespace TodoTasks.ViewModel
                                 this.Subtasks.Clear();
                                 if (SelectedTask.Subtasks != null)
                                 {
-
                                     if (SelectedTask.Subtasks.Count > 0)
                                     {
                                         foreach (Subtask subTask in this.SelectedTask.Subtasks)
@@ -84,7 +82,6 @@ namespace TodoTasks.ViewModel
                             }
                             else this.SubtasksPaneVisible = false;
                         }
-
                     }
                 }
                 PropertyUpdated("SelectedTask");
@@ -101,7 +98,6 @@ namespace TodoTasks.ViewModel
                 PropertyUpdated("AddaTaskText");
             }
         }
-
 
         private int _taskCount;
         public int TaskCount
@@ -146,7 +142,6 @@ namespace TodoTasks.ViewModel
                 PropertyUpdated("SubtasksPaneVisible");
             }
         }
-
 
         public NewTasklistCommand NewTasklistCommand { get; set; }
         public NewTaskCommand NewTaskCommand { get; set; }
