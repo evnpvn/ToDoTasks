@@ -26,7 +26,7 @@ namespace TodoTasks.Model
                 {
                     return Tasks.Count.ToString();
                 }
-                else return "X"; 
+                else return ""; 
             }
             set
             {

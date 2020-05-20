@@ -97,18 +97,7 @@ namespace TodoTasks.ViewModel
                 _addaTaskText = value;
                 PropertyUpdated("AddaTaskText");
             }
-        }
-
-        private int _taskCount;
-        public int TaskCount
-        {
-            get { return _taskCount; }
-            set
-            {
-                _taskCount = this.SelectedTasklist.Tasks.Count;
-                PropertyUpdated("TaskCount");
-            }
-        }
+        }     
 
         private bool _isTasklistRenaming;
         public bool IsTasklistRenaming
@@ -150,6 +139,8 @@ namespace TodoTasks.ViewModel
         public StartRenameCommand StartRenameCommand { get; set; }
         public EndRenameCommand EndRenameCommand { get; set; }
 
+        public DeleteCommand DeleteCommand { get; set; }
+
         public MarkImportantCommand MarkImportantCommand { get; set; }
 
         //!Events
@@ -177,6 +168,8 @@ namespace TodoTasks.ViewModel
 
             this.StartRenameCommand = new StartRenameCommand(this);
             this.EndRenameCommand = new EndRenameCommand(this);
+
+            this.DeleteCommand = new DeleteCommand(this);
 
             this.MarkImportantCommand = new MarkImportantCommand(this);
         }

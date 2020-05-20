@@ -36,7 +36,7 @@ namespace TodoTasks.ViewModel.Commands
             //create a new string subtask
             Subtask newSubtask = new Subtask(this.TasksViewModel.SelectedTask.TaskID)
             {
-                Name = "Untitled subtask"
+                Name = ""
             };
 
             //add the string to the observable collection
