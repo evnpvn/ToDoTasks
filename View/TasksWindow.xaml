@@ -52,6 +52,7 @@
                 <TextBlock Grid.Column="1" Text="{Binding SelectedTask.Name}" Foreground="DarkGray" FontSize="20" FontWeight="DemiBold"
                            Margin="7,0,0,0"/>
 
+
                 <!--It didn't work to abstract the below ImportantStarbutton as a user control-->
                 <!--<uc:ImportantStarButton Grid.Column="2" Width="17" Height="17" Margin="0,0,7,0"/>-->
                 <Grid Grid.Column="2" Width="17" Height="17" Margin="0,0,7,0">
@@ -101,8 +102,13 @@
                             </Image>
 
                             <TextBox Grid.Column="1" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     Style="{Binding Source={StaticResource mySubtaskTextBoxStyle}}"                           
-                                     />
+                                     Style="{Binding Source={StaticResource mySubtaskTextBoxStyle}}" >
+                                <TextBox.InputBindings>
+                                    <KeyBinding Key="Return" 
+                                                Command="{Binding Source={StaticResource vm}, Path=NewSubtaskCommand}"/>
+                                </TextBox.InputBindings>
+                                
+                            </TextBox>
                         </Grid>
 
                     </DataTemplate>
