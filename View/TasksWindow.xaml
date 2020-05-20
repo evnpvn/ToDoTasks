@@ -112,12 +112,21 @@
             <Button Style="{StaticResource myButtonStyle}" Command="{Binding NewSubtaskCommand}" CommandParameter="{Binding}"
                     Content="+   Next step" Margin="15,5,5,5" Foreground="Violet"/>
 
+            <Grid>
+                <TextBox Style="{Binding Source={StaticResource myNotesTextBoxPromptStyle}}"
+                         Text=" Add note" Padding="5,7,5,7"/>
+
+                <TextBox Style="{Binding Source={StaticResource myNotesTextBoxStyle}}"
+                     Text="{Binding SelectedTask.Notes}" Padding="5,7,5,7"/>
+            </Grid>
+            
+
         </StackPanel>
 
         <!--Black separating border-->
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,0,0,0"
-                       Width="1" Background="Black" Visibility="{Binding SubtasksPaneVisible, Converter={StaticResource BooltoVisSubtasks},
+                       Width="0.5" Background="Black" Visibility="{Binding SubtasksPaneVisible, Converter={StaticResource BooltoVisSubtasks},
                                                                  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
