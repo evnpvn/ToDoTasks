@@ -207,6 +207,16 @@
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
         
+        <!--Style for Grey circle completion image-->
+        <Style x:Key="myGreyCircleImage" TargetType="{x:Type Image}">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Image.Source" Value="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\greycircle.png"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Image.Source" Value="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\greycircleFilled.png"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
         <!--Style for Grey star button-->
         <Style x:Key="myGreyStarButton" TargetType="Button">

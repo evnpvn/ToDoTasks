@@ -14,7 +14,11 @@ namespace TodoTasks.ViewModel.Commands
         TasksViewModel TasksViewModel { get; set; }
 
         //!Events
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
 
         //!Ctor
         public DeleteCommand(TasksViewModel tasksViewModel)
