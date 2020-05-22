@@ -136,7 +136,6 @@
                                                                  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
-
         <!--Tasklist Panel-->
         <Grid>
             <StackPanel DockPanel.Dock="Left" Width="200" HorizontalAlignment="Left"
@@ -152,13 +151,19 @@
                     <ListView.ItemTemplate>
 
                         <DataTemplate>
-                            <Grid>
+                            <Grid Margin="0,4,0,5">
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
                                     <ColumnDefinition Width="140"/>
-                                    <ColumnDefinition Width="20"/>
+                                    <!--<ColumnDefinition Width="20"/>-->
                                 </Grid.ColumnDefinitions>
-                                
+
                                 <Grid Grid.Column="0" HorizontalAlignment="Left">
+                                    <Image Grid.Column="0" Margin="6,6,6,6"
+                                           Source="{Binding Path=IconSource}"/>
+                                </Grid>
+                                
+                                <Grid Grid.Column="1" HorizontalAlignment="Left">
                                     <TextBlock Text="{Binding Name}" Style="{Binding Source={StaticResource myTextblockStyle}}"
                                            Visibility="{Binding Source={StaticResource vm}, Path=IsTasklistRenaming, 
                                                      Converter={StaticResource BooltoVisOpposite}}"/>
@@ -184,14 +189,13 @@
                                     </Grid.ContextMenu>
                                 </Grid>
 
-                                <TextBlock Grid.Column="1" Style="{Binding Source={StaticResource myTextblockStyle}}"
+                                <TextBlock Grid.Column="2" Style="{Binding Source={StaticResource myTextblockStyle}}"
                                            Foreground="DimGray" Margin="0,4,5,0"
                                            Text="{Binding TotalCount}"/>
 
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-
                 </ListView>
 
                 <Button Style="{StaticResource myButtonStyle}" Content="+New list" Margin="26,5,5,5" Foreground="DarkGray"

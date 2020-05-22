@@ -5,21 +5,27 @@ using System.ComponentModel;
 using System.Text;
 using TodoTasks.Model;
 using TodoTasks.ViewModel.Commands;
+using System.IO;
 
 namespace TodoTasks.ViewModel
 {
     public class TasksViewModel : INotifyPropertyChanged
     {
-        //worst case scenario the model in the VM is an exact copy of the model
-        //best case scenario it is only what is needed
         //!Fields
+        public static readonly string ImagesPath = "c:\\Users\\EvanPavan\\Documents\\Documents\\2 - Personal\\Programming\\2 - Misc\\Udemy WPF course\\ToDoTasks\\View\\Images\\";
 
         //!Properties
         public ObservableCollection<Tasklist> TasklistList { get; set; } 
 
+        public ObservableCollection<Tasklist> DefaultTasklistsList { get; set; }
+
         public ObservableCollection<Task> TasksList { get; set; }
 
         public ObservableCollection<Subtask> Subtasks { get; set; }
+
+        public Tasklist DefaultMyDayList     { get; set; } = new Tasklist() { Name = "My Day",    IconSource = new Uri(Path.Combine(ImagesPath, "blueSun.png")) };
+        public Tasklist DefaultImportantList { get; set; } = new Tasklist() { Name = "Important", IconSource = new Uri(Path.Combine(ImagesPath, "redflag.png")) };
+        public Tasklist DefaultTasksList     { get; set; } = new Tasklist() { Name = "Tasks",     IconSource = new Uri(Path.Combine(ImagesPath, "greenhouse.png")) };
 
         private Tasklist _selectedTasklist;
         public Tasklist SelectedTasklist
@@ -149,18 +155,18 @@ namespace TodoTasks.ViewModel
         //!Ctor
         public TasksViewModel()
         {
-            this.TasklistList = new ObservableCollection<Tasklist>
+            this.TasklistList = new ObservableCollection<Tasklist> 
             {
-                new Tasklist { Name = "Important" },
-                new Tasklist { Name = "My Day" },
-                new Tasklist { Name = "Flagged email" }
+                this.DefaultMyDayList,
+                this.DefaultImportantList,
+                this.DefaultTasksList
             };
 
             this.TasksList = new ObservableCollection<Task>();
 
             this.Subtasks = new ObservableCollection<Subtask>();
 
-            this.SelectedTasklist = TasklistList[0];
+            this.SelectedTasklist = this.DefaultImportantList;
 
             this.NewTasklistCommand = new NewTasklistCommand(this);
             this.NewTaskCommand = new NewTaskCommand(this);

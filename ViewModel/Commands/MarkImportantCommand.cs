@@ -46,7 +46,8 @@ namespace TodoTasks.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            Tasklist importantList = (this.TasksViewModel.TasklistList.Where(tlist => tlist.Name == "Important").FirstOrDefault()) as Tasklist;
+            ////Tasklist importantList = (this.TasksViewModel.TasklistList.Where(tlist => tlist.Name == "Important").FirstOrDefault()) as Tasklist;
+            Tasklist importantList = this.TasksViewModel.DefaultImportantList;
 
             if (this.TasksViewModel.SelectedTask.Important == false)
             {
