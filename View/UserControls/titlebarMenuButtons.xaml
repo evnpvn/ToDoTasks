@@ -14,7 +14,7 @@
 
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
 
-        <Image>
+        <Image x:Name="MinimizeButton" MouseLeftButtonDown="MinimizeButton_MouseLeftButtonDown">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property="Image.Source" Value="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\minimizeButton.png"/>
@@ -27,7 +27,7 @@
             </Image.Style>
         </Image>
 
-        <Image>
+        <Image x:Name="MaximizeButton" MouseLeftButtonDown="MaximizeButton_MouseLeftButtonDown">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property="Image.Source" Value="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\maximizeButton.png"/>
@@ -40,7 +40,7 @@
             </Image.Style>
         </Image>
 
-        <Image>
+        <Image x:Name="ExitButton" MouseLeftButtonDown="ExitButton_MouseLeftButtonDown">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property="Image.Source" Value="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\exitButton.png"/>

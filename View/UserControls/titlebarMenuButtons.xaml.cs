@@ -22,5 +22,29 @@ namespace TodoTasks.View.UserControls
         {
             InitializeComponent();
         }
+
+        private void MinimizeButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            TasksWindow.GetWindow(this).WindowState = WindowState.Minimized;
+        }
+
+        private void MaximizeButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Window tasksWindow = TasksWindow.GetWindow(this);
+
+            if (tasksWindow.WindowState == WindowState.Maximized)
+            {
+                tasksWindow.WindowState = WindowState.Normal;
+            }
+            else
+            {
+                tasksWindow.WindowState = WindowState.Maximized;
+            }
+        }
+
+        private void ExitButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            TasksWindow.GetWindow(this).Close();
+        }
     }
 }
