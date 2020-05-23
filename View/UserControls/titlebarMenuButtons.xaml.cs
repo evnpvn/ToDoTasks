@@ -16,9 +16,9 @@ namespace TodoTasks.View.UserControls
     /// <summary>
     /// Interaction logic for titlebarMenuButtons.xaml
     /// </summary>
-    public partial class titlebarMenuButtons : UserControl
+    public partial class TitlebarMenuButtons : UserControl
     {
-        public titlebarMenuButtons()
+        public TitlebarMenuButtons()
         {
             InitializeComponent();
         }
