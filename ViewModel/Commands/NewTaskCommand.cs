@@ -40,12 +40,19 @@ namespace TodoTasks.ViewModel.Commands
         public void Execute(object parameter)
         {
             string taskText = parameter as string;
+            Tasklist selectedTasklist = TasksViewModel.SelectedTasklist;
 
             //create a new task
-            Task newTask = new Task(TasksViewModel.SelectedTasklist.TasklistID)
+            Task newTask = new Task(selectedTasklist.TasklistID)
             {
                 Name = taskText
             };
+
+            //if it's created in the important list then mark it important
+            if (selectedTasklist == TasksViewModel.DefaultImportantList)
+            {
+                newTask.Important = true;
+            }
 
             //add this directly to the observable collection
             //add it to the list of tasks against the task list as well

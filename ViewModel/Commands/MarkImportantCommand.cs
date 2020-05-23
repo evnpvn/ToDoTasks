@@ -46,7 +46,6 @@ namespace TodoTasks.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            ////Tasklist importantList = (this.TasksViewModel.TasklistList.Where(tlist => tlist.Name == "Important").FirstOrDefault()) as Tasklist;
             Tasklist importantList = this.TasksViewModel.DefaultImportantList;
 
             if (this.TasksViewModel.SelectedTask.Important == false)
@@ -58,12 +57,8 @@ namespace TodoTasks.ViewModel.Commands
                 {
                     importantList.Tasks.Add(this.TasksViewModel.SelectedTask);
 
-                    //is the list you are currently looking at is the important task list 
-                    //then add it to that list as well
-                    if(this.TasksViewModel.SelectedTasklist.Name == "Important")
-                    {
-                        TasksViewModel.SelectedTasklist.Tasks.Add(this.TasksViewModel.SelectedTask);
-                    }
+                    //update the task counter on the important list
+                    importantList.TotalCount = importantList.Tasks.Count.ToString();
                 }
             }
             else
@@ -75,12 +70,14 @@ namespace TodoTasks.ViewModel.Commands
                 {
                     importantList.Tasks.Remove(this.TasksViewModel.SelectedTask);
 
-                    //is the list you are currently looking at is the important task list 
-                    //then remove it to that list as well
-                    if (this.TasksViewModel.SelectedTasklist.Name == "Important")
+                    //if you are in the important list then also remove from the general tasklist collection
+                    if(this.TasksViewModel.SelectedTasklist == importantList)
                     {
-                        TasksViewModel.SelectedTasklist.Tasks.Remove(this.TasksViewModel.SelectedTask);
+                        this.TasksViewModel.TasksList.Remove(this.TasksViewModel.SelectedTask);
                     }
+
+                    //update the task counter on the important list
+                    importantList.TotalCount = importantList.Tasks.Count.ToString();
                 }
             }
         }

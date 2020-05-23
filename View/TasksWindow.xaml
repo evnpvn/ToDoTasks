@@ -233,7 +233,7 @@
             <uc:TitlebarMenuButtons HorizontalAlignment="Right" Width="200" Height="32"
                                     Visibility="{Binding SubtasksPaneVisible, Converter={StaticResource BooltoVisOpposite}}"/>
             
-            <StackPanel Orientation="Horizontal" Margin="35,50,5,5">
+            <StackPanel Orientation="Horizontal" Margin="35,20,5,5">
                 <Image Source="{Binding SelectedTasklist.IconSource}" Width="25" Height="25"  Margin="0,3,14,0"/>
                 <TextBlock Text="{Binding SelectedTasklist.Name}" Foreground="Gainsboro" 
                            FontSize="26" FontWeight="DemiBold" Margin="0,0,0,0"/>
