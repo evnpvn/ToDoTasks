@@ -17,7 +17,7 @@
         <Image x:Name="MinimizeButton" MouseLeftButtonDown="MinimizeButton_MouseLeftButtonDown">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
-                    <Setter Property="Image.Source" Value="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\minimizeButton.png"/>
+                    <Setter Property="Image.Source" Value="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\minimizeButtonTransparent.png"/>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Image.Source" Value="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\minimizeButtonHighlighted.png"/>
@@ -30,7 +30,7 @@
         <Image x:Name="MaximizeButton" MouseLeftButtonDown="MaximizeButton_MouseLeftButtonDown">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
-                    <Setter Property="Image.Source" Value="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\maximizeButton.png"/>
+                    <Setter Property="Image.Source" Value="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\maximizeButtonTransparent.png"/>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Image.Source" Value="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\maximizeButtonHighlighted.png"/>
@@ -43,7 +43,7 @@
         <Image x:Name="ExitButton" MouseLeftButtonDown="ExitButton_MouseLeftButtonDown">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
-                    <Setter Property="Image.Source" Value="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\exitButton.png"/>
+                    <Setter Property="Image.Source" Value="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\exitButtonTransparent.png"/>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Image.Source" Value="C:\Users\EvanPavan\Documents\Documents\2 - Personal\Programming\2 - Misc\Udemy WPF course\ToDoTasks\View\Images\exitButtonHighlighted.png"/>

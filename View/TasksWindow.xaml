@@ -14,7 +14,7 @@
         BorderThickness="1" BorderBrush="#505050">
 
     <WindowChrome.WindowChrome>
-        <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="10"/>
+        <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="8"/>
     </WindowChrome.WindowChrome>
 
 
@@ -24,6 +24,7 @@
         <c:BooltoVisOpposite x:Key="BooltoVisOpposite"/>
         <c:BooltoVisSubtasksPane x:Key="BooltoVisSubtasks"/>
     </Window.Resources>
+
 
 
     <DockPanel DataContext="{StaticResource vm}" Background="#191919">
@@ -225,9 +226,13 @@
                 </TextBox>
             </Grid>
         </StackPanel>
-        
+
         <!--List of Tasks in task list -->
         <StackPanel Background="#191919">
+
+            <uc:TitlebarMenuButtons HorizontalAlignment="Right" Width="200" Height="32"
+                                    Visibility="{Binding SubtasksPaneVisible, Converter={StaticResource BooltoVisOpposite}}"/>
+            
             <StackPanel Orientation="Horizontal" Margin="35,50,5,5">
                 <Image Source="{Binding SelectedTasklist.IconSource}" Width="25" Height="25"  Margin="0,3,14,0"/>
                 <TextBlock Text="{Binding SelectedTasklist.Name}" Foreground="Gainsboro" 
@@ -325,5 +330,5 @@
         </StackPanel>
         
     </DockPanel>
-
+    
 </Window>
