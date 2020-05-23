@@ -23,7 +23,6 @@ namespace TodoTasks.ViewModel.Commands
         //!Methods
         public bool CanExecute(object parameter)
         {
-            //TODO: implement logic once known
             return true;
         }
 
