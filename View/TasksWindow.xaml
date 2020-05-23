@@ -14,7 +14,7 @@
         BorderThickness="1" BorderBrush="#505050">
 
     <WindowChrome.WindowChrome>
-        <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="20"/>
+        <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="10"/>
     </WindowChrome.WindowChrome>
 
 
