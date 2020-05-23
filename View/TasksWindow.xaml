@@ -314,7 +314,11 @@
                                         <MenuItem Header="Mark as Important"
                                                   Command="{Binding MarkImportantCommand}"
                                                   CommandParameter="{Binding SelectedTask.Name}"/>
-                                        <MenuItem Header="Mark as Completed"/>
+                                        
+                                        <MenuItem Header="Mark as Completed"
+                                                  Command="{Binding DeleteCommand}"
+                                                  CommandParameter="{Binding SelectedTask}"/>
+                                        
                                         <Separator/>
                                         <MenuItem Header="Delete Task" 
                                                   Command="{Binding DeleteCommand}"
